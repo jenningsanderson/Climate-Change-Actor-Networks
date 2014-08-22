@@ -1,20 +1,17 @@
 
-
 '''
 Nodes will be instances of this class, specific metrics and methods can be defined 
 here to create node attributes.
-
-Hopefully NetworkX will accept nodes as instances of these classes? Hopefully...
 '''
 
 import networkx as nx
-
 
 class ClimateChangeActor:
 
 	def __init__(self, id, name):
 		self.id = id
 		self.name = name
+		self.label = name
 
 	def add_attributes(self, discourse="NA", location="NA", type=None, type_no=-1):
 		self.discourse = discourse

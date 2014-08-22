@@ -9,8 +9,13 @@ import sys, os
 
 from models import *
 
-spreadsheet_format = {
-	"name" : 1,
+format = {
+	'name' 		: 2,
+	'id'		: 1,
+	'discourse'	: 3,
+	'type'		: 4,
+	'type_no'	: 5,
+	'location'	: 8
 }
 
 
@@ -27,11 +32,26 @@ def parse_spreadsheet(file_path):
 	for sheet_row in range(2,ws.max_row):
 	# for sheet_row in range(1,10):	
 		
-		if ws.cell(row=sheet_row, column=1) != None:
-			
-			obj = ClimateChangeActor(id=1, name=ws.cell(row=sheet_row, column=2).value)
+		if ws.cell(row=sheet_row, column=1) != None: #If no id, don't parse
 
-		#print obj
+			#Collect values
+			name = ws.cell(row=sheet_row, column=format['name']).value
+			obj_id   = ws.cell(row=sheet_row, column=format['id']).value
+			obj_type = ws.cell(row=sheet_row, column=format['type']).value
+			type_no  = ws.cell(row=sheet_row, column=format['type_no']).value
+			discourse= ws.cell(row=sheet_row, column=format['discourse']).value
+			location = ws.cell(row=sheet_row, column=format['location']).value
+			
+			obj = ClimateChangeActor(id=obj_id, name=name)
+
+
+			obj.add_attributes(	type   		= obj_type, 
+								type_no		= type_no, 
+								discourse	= discourse,
+								location 	= location)
+
+
+			#Conditionally set other values such as Alexa Web Ranking
 
 		nodes.append( obj )
 
