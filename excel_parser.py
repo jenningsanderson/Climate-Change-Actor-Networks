@@ -9,6 +9,10 @@ import sys, os
 
 from models import *
 
+spreadsheet_format = {
+	"name" : 1,
+}
+
 
 def parse_spreadsheet(file_path):
 	#Open the file for reading
@@ -20,11 +24,12 @@ def parse_spreadsheet(file_path):
 
 	nodes = []
 
-	# for sheet_row in range(0,ws.max_row):
-	for sheet_row in range(1,10):	
+	for sheet_row in range(2,ws.max_row):
+	# for sheet_row in range(1,10):	
 		
 		if ws.cell(row=sheet_row, column=1) != None:
-			obj = ClimateChangeActor(name=ws.cell(row=sheet_row, column=1), id=0)
+			
+			obj = ClimateChangeActor(id=1, name=ws.cell(row=sheet_row, column=2).value)
 
 		#print obj
 
