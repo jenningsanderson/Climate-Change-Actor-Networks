@@ -10,7 +10,7 @@ import sys, os
 from models import *
 
 #
-format = {
+node_format = {
 	'name' 		: 2,
 	'id'		: 1,
 	'discourse'	: 3,
@@ -41,12 +41,12 @@ def parse_spreadsheet(file_path):
 		if ws1.cell(row=sheet_row, column=1) != None: #If no id, don't parse
 
 			#Collect values
-			name = ws.cell(row=sheet_row, column=format['name']).value
-			obj_id   = ws1.cell(row=sheet_row, column=format['id']).value
-			obj_type = ws1.cell(row=sheet_row, column=format['type']).value
-			type_no  = ws1.cell(row=sheet_row, column=format['type_no']).value
-			discourse= ws1.cell(row=sheet_row, column=format['discourse']).value
-			location = ws1.cell(row=sheet_row, column=format['location']).value
+			name 	 = ws1.cell(row=sheet_row, column=node_format['name']).value
+			obj_id   = ws1.cell(row=sheet_row, column=node_format['id']).value
+			obj_type = ws1.cell(row=sheet_row, column=node_format['type']).value
+			type_no  = ws1.cell(row=sheet_row, column=node_format['type_no']).value
+			discourse= ws1.cell(row=sheet_row, column=node_format['discourse']).value
+			location = ws1.cell(row=sheet_row, column=node_format['location']).value
 			
 			obj = ClimateChangeActor(id=obj_id, name=name)
 
@@ -63,14 +63,19 @@ def parse_spreadsheet(file_path):
 
 	#Now add edges
 
-	# ws2 = wb.get_sheet_by_name(wb.get_sheet_names()[1])
+	ws2 = wb.get_sheet_by_name(wb.get_sheet_names()[1])
 	
 	edges = []
 
-	# for sheet_row in range(2,ws2.max_row):
-	# 	if ws2.cell(row=sheet_row, column=1) != None: #If no id, don't parse
-	
+	for sheet_row in range(2,ws2.max_row):
+		if ws2.cell(row=sheet_row, column=1) != None: #If no id, don't parse
+		
+			from_id  = ws2.cell(row=sheet_row, column=edge_format['from_id']).value
+			to_id    = ws2.cell(row=sheet_row, column=edge_format['to_id']).value
 
+			edge_obj = ActorRelation(from_id=from_id, to_id=to_id)
+
+			edges.append(edge_obj)
 
 	return nodes, edges
 

@@ -20,16 +20,15 @@ g = nx.DiGraph()
 
 #Add nodes
 for node in nodes[0:10]:
-	g.add_node( node, attr_dict = node.__dict__ )
+	g.add_node( node.id, attr_dict = node.__dict__ )
 
 
 #Add edges
-# for edge in edges:
-	#unimplemented at this point
+for edge in edges:
+	g.add_edge( edge.from_id, edge.to_id, attr_dict = edge.__dict__ )
 
 
-# Preview:
-
+# Quick & dirty Preview:
 # nx.draw(g)
 # plt.show()
 
