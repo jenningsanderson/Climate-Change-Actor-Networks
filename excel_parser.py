@@ -22,7 +22,7 @@ node_format = {
 edge_format = {
 	'from_id'	: 1,
 	'to_id'		: 2,
-	'weight'	: 3,
+	'weight'	: 3
 }
 
 

@@ -1,3 +1,9 @@
+#excel files
+*.xlsx
+
+#Graph files
+*.gml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
