@@ -1,8 +1,12 @@
+#export files
+exports/*
+
 #excel files
 *.xlsx
 
 #Graph files
 *.gml
+*.gephi
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
